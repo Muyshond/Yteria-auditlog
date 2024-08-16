@@ -30,9 +30,11 @@ server:
         excludePatterns:
           - /Component-preload.js
     - name: ui5-tooling-modules-middleware
-      afterMiddleware: compression
+      afterMiddleware: ui5-tooling-transpile-middleware
       configuration:
         debug: true
+        prependPathMappings: false
+        addToNamespace: true
 builder:
   customTasks:
     - name: ui5-tooling-transpile-task
