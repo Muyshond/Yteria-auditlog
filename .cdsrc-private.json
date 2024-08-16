@@ -1,0 +1,64 @@
+{
+  "requires": {
+    "[hybrid]": {
+      "custom-service:conn-srv": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.eu10-004.hana.ondemand.com",
+          "org": "b-tech-dev",
+          "space": "TECH",
+          "instance": "conn-srv",
+          "key": "conn-srv-key",
+          "resolved": false
+        },
+        "vcap": {
+          "name": "custom-service:conn-srv"
+        }
+      },
+      "auth": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.eu10-004.hana.ondemand.com",
+          "org": "b-tech-dev",
+          "space": "TECH",
+          "instance": "central-audit-logs-xsuaa-srv",
+          "key": "central-audit-logs-xsuaa-srv-key",
+          "resolved": false
+        },
+        "kind": "basic",
+        "users": {
+          "admin": {
+            "password": "admin",
+            "ID": "admin",
+            "roles": [
+              "administrator"
+            ]
+          },
+          "random": {
+            "password": "random",
+            "ID": "random",
+            "roles": [
+              "administrator"
+            ]
+          },
+          "*": false
+        }
+      },
+      "destinations": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.eu10-004.hana.ondemand.com",
+          "org": "b-tech-dev",
+          "space": "TECH",
+          "instance": "dest-srv",
+          "key": "dest-srv-key",
+          "resolved": false
+        },
+        "kind": "destinations",
+        "vcap": {
+          "name": "destinations"
+        }
+      }
+    }
+  }
+}
