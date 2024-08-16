@@ -1,0 +1,172 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "be.nmbs.logs",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.13.3",
+            "toolsId": "0c547e1e-67ce-4b8a-82d0-df8353c6a129"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "odata/v4/catalog/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "Logs-overview": {
+                    "semanticObject": "Logs",
+                    "action": "overview",
+                    "title": "{{flpTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.123.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "be.nmbs.logs.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "LogsList",
+                    "target": "LogsList"
+                },
+                {
+                    "pattern": "Logs({key}):?query:",
+                    "name": "LogsObjectPage",
+                    "target": "LogsObjectPage"
+                }
+            ],
+            "targets": {
+                "LogsList": {
+                    "type": "Component",
+                    "id": "LogsList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/Logs",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Logs": {
+                                    "detail": {
+                                        "route": "LogsObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "ResponsiveTable"
+                                    }
+                                }
+                            },
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView",
+                            "views": {
+                                "paths": [
+                                    {
+                                        "key": "tableView",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView"
+                                    },
+                                    {
+                                        "key": "tableView3",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView3",
+                                        "entitySet": "SubAccounts"
+                                    }
+                                ],
+                                "showCounts": true
+                            },
+                            "initialLoad": "Auto"
+                        }
+                    }
+                },
+                "LogsObjectPage": {
+                    "type": "Component",
+                    "id": "LogsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "contextPath": "/Logs"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

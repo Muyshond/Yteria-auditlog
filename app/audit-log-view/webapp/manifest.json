@@ -1,0 +1,195 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "com.yteria.auditlog.auditlogview",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.14.2",
+      "toolsId": "32786942-8503-4cdd-a407-dc64eabba5a4"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "AuditLogs-View": {
+          "semanticObject": "AuditLogs",
+          "action": "View",
+          "title": "{{flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.126.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.yteria.auditlog.auditlogview.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "LogsList",
+          "target": "LogsList"
+        },
+        {
+          "pattern": "Logs({key}):?query:",
+          "name": "LogsObjectPage",
+          "target": "LogsObjectPage"
+        }
+      ],
+      "targets": {
+        "LogsList": {
+          "type": "Component",
+          "id": "LogsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Logs",
+              "navigation": {
+                "Logs": {
+                  "detail": {
+                    "route": "LogsObjectPage"
+                  }
+                }
+              },
+              "hideFilterBar": false,
+              "content": {
+                "header": {
+                  "actions": {
+                    "actiontest": {
+                      "press": "com.yteria.auditlog.auditlogview.ext.controller.SendAlert.sendMail",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Send mail"
+                    }
+                  }
+                }
+              },
+              "views": {
+                "paths": [
+                  {
+                    "key": "tableView1",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#tableView1"
+                  },
+                  {
+                    "key": "customchart",
+                    "label": "{i18n>charts}",
+                    "template": "com.yteria.auditlog.auditlogview.ext.fragment.CustomChartsView"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "LogsObjectPage": {
+          "type": "Component",
+          "id": "LogsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/Logs",
+              "navigation": {},
+              "editableHeaderContent": true,
+              "content": {
+                "header": {
+                  "actions": {
+                    "sendAlert": {
+                      "press": "com.yteria.auditlog.auditlogview.ext.controller.SendAlert.sendMail",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "{i18n>sendAlert}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "com.yteria.auditlog.auditlogview.ext.fragment.CustomChartsView"
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+   
+        <Button id="custombutton" 
+                core:require="{ handler: 'com/yteria/auditlog/auditlogview/ext/fragment/CustomChartsView.controller'}" 
+                text="CustomChartsView" 
+                press="handler.onPress" />
+				
+        <VBox id="x">
+		
+            <core:HTML id="canvasId" preferDOM="true" content="&lt;canvas id='Canvasid' width='500' height='500'/&gt;"/>
+
+  		</VBox>
+    
+</core:FragmentDefinition>

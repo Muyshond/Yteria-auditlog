@@ -1,0 +1,2 @@
+"use strict";sap.ui.define(["sap/fe/core/PageController"],function(e){"use strict";const t=e.extend("com.yteria.auditlog.auditlogview.ext.view.Auditlog",{});return t});
+//# sourceMappingURL=Auditlog.controller.js.map

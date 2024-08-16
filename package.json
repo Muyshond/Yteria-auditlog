@@ -1,0 +1,83 @@
+{
+  "name": "central-audit-logs",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap-cloud-sdk/connectivity": "^3.12.0",
+    "@sap-cloud-sdk/http-client": "^3.10.0",
+    "@sap/cds": "^7",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.9.21",
+    "@sap/xssec": "^3",
+    "cds": "^0.2.0",
+    "cds-swagger-ui-express": "^0.8.0",
+    "chart.js": "^4.4.3",
+    "express": "^4",
+    "mockserver": "^2.0.0",
+    "passport": "^0"
+  },
+  "devDependencies": {
+    "@cap-js/cds-typer": ">=0.1",
+    "@cap-js/sqlite": "^1",
+    "@sap-ux/annotation-converter": "^0.8.15",
+    "@sap-ux/edmx-parser": "^0.7.1",
+    "@sap-ux/fe-mockserver-core": "^1.2.53",
+    "@sap-ux/fe-mockserver-plugin-cds": "^1.2.2",
+    "@sap-ux/ui5-middleware-fe-mockserver": "^2.2.53",
+    "@sap-ux/vocabularies-types": "^0.10.14",
+    "@sap/cds-dk": "^7",
+    "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+    "@sap/ux-specification": "^1.120.15",
+    "@sapui5/ts-types": "^1.92.2",
+    "@types/node": "^20.14.15",
+    "cds-plugin-ui5": "^0.6.13",
+    "eslint": "^7.32.0",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch:ts": "cds-ts watch --profile hybrid",
+    "build:cds": "cds build --production",
+    "build:cf": "npm run build:cds && npm run build:ts && npm run cleanup:ts",
+    "build:ts": "tsc",
+    "cleanup:ts": "npx rimraf gen/srv/srv/**/*.ts && npx rimraf gen/srv/srv/src/core/*.ts && npx rimraf gen/srv/srv/src/handlers/CatalogService/*.ts && npx rimraf gen/srv/srv/src/services/*.ts && npx rimraf gen/srv/srv/src/utils/*.ts",
+    "undeploy": "cf undeploy central-audit-logs --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-logs": "cds watch --open be.nmbs.logs/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-audit-log-view": "cds watch --open audit-log-view/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "jwt"
+      },
+      "BTP_SRV": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "cloud-management-service-destination",
+          "path": "/accounts/v1",
+          "requestTimeout": 30000,
+          "headers": {
+            "Accept": "*",
+            "Content-Type": "application/json"
+          }
+        }
+      }
+    }
+  },
+  "imports": {
+    "#cds-models/*": "./@cds-models/*/index.js"
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/logs",
+    "app/audit-log-view"
+  ]
+}

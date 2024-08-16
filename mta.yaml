@@ -1,0 +1,137 @@
+_schema-version: "3.1"
+ID: central-audit-logs
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: central-audit-logs-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: central-audit-logs-auth
+  - name: central-audit-logs-destination
+  - name: central-audit-logs-connectivity
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    disk-quota: 512M
+    memory: 1024M
+  build-parameters:
+    builder: npm
+- name: central-audit-logs
+  type: approuter.nodejs
+  path: app/
+  properties:
+    INCOMING_CONNECTION_TIMEOUT: 0
+  requires:
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv-api
+      timeout: 480000
+      url: ~{srv-url}
+  - name: central-audit-logs-auth
+  - name: central-audit-logs-destination
+  - name: central-audit-logs-connectivity
+  parameters:
+    disk-quota: 256M
+    keep-existing-routes: true
+    memory: 256M
+- name: central-audit-logs-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: central-audit-logs-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - benmbslogs.zip
+      name: benmbslogs
+      target-path: resources/
+    - artifacts:
+      - comyteriaauditlogauditlogview.zip
+      name: comyteriaauditlogauditlogview
+      target-path: resources/
+- name: benmbslogs
+  type: html5
+  path: app/logs
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: comyteriaauditlogauditlogview
+  type: html5
+  path: app/audit-log-view
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: central-audit-logs-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: central-audit-logs-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: central-audit-logs-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: central-audit-logs-srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+          existing_destinations_policy: update
+    service: destination
+    service-plan: lite
+    version: 1.0.0
+  requires:
+  - name: srv-api
+- name: central-audit-logs-connectivity
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
+- name: central-audit-logs-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: central-audit-logs-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm i
+    - npx cds build --production
+    - npm run build:cf
