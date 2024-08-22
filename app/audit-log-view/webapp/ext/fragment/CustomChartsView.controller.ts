@@ -1,9 +1,11 @@
 import ExtensionAPI from 'sap/fe/core/ExtensionAPI';
 import UI5Event from 'sap/ui/base/Event';
 import MessageToast from 'sap/m/MessageToast';
-import { Chart } from '../libs/chart';
+// import { Chart } from 'chart.js';
+// import * as chartjs from '../libs/chart';
+// const Chart = chartjs;
 
-console.log(`[STATIC IMPORT] Chart.js loaded: ${Chart.version}`);
+// console.log(`[STATIC IMPORT] Chart.js loaded: ${Chart.version}`);
 
 /**
  * Generated event handler.

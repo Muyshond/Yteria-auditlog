@@ -13,7 +13,6 @@
     "@sap/xssec": "^3",
     "cds": "^0.2.0",
     "cds-swagger-ui-express": "^0.8.0",
-    "chart.js": "^4.4.3",
     "express": "^4",
     "mockserver": "^2.0.0",
     "passport": "^0"
@@ -32,7 +31,8 @@
     "@sap/ux-specification": "^1.120.15",
     "@sapui5/ts-types": "^1.92.2",
     "@types/node": "^20.14.15",
-    "cds-plugin-ui5": "^0.6.13",
+    "cds-plugin-ui5": "^0.9.8",
+    "chart.js": "^4.4.4",
     "eslint": "^7.32.0",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
