@@ -92,7 +92,12 @@
             }
         },
         "resources": {
-            "css": []
+            "css": [],
+            "js": [
+                {
+                    "uri": "./ext/libs/chart.js"
+                }
+            ]
         },
         "routing": {
             "config": {},
