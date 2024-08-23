@@ -3,11 +3,10 @@
   "authenticationMethod": "route",
   "routes": [
     {
-      "source": "^/odata/(.*)$",
-      "target": "/odata/$1",
-      "destination": "ui5",
-      "authenticationType": "xsuaa",
-      "csrfProtection": false
+      "source": "^/odata/",
+      "destination": "central-audit-logs-srv-api",
+      "csrfProtection": true,
+      "authenticationType": "xsuaa"
     },
     {
       "source": "^/resources/(.*)$",

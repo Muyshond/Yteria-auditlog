@@ -208,6 +208,6 @@
     },
     "sap.cloud": {
         "public": true,
-        "service": "leanboard"
+        "service": "auditlogview"
     }
 }
