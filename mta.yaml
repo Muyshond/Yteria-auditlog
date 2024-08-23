@@ -22,7 +22,7 @@ modules:
     builder: npm
 - name: central-audit-logs
   type: approuter.nodejs
-  path: app/
+  path: app
   properties:
     INCOMING_CONNECTION_TIMEOUT: 0
   requires:
@@ -37,7 +37,7 @@ modules:
   - name: central-audit-logs-destination
   - name: central-audit-logs-connectivity
   parameters:
-    disk-quota: 256M
+    disk-quota: 512M
     keep-existing-routes: true
     memory: 256M
 - name: central-audit-logs-app-content

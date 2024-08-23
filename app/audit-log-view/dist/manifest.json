@@ -35,6 +35,15 @@
                         "parameters": {},
                         "additionalParameters": "allowed"
                     }
+                },
+                "AuditLog-Monitor": {
+                    "semanticObject": "AuditLog",
+                    "action": "Monitor",
+                    "title": "{{flpTitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
                 }
             }
         }
@@ -196,5 +205,9 @@
     "sap.fiori": {
         "registrationIds": [],
         "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "leanboard"
     }
 }
