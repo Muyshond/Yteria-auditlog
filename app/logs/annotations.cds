@@ -5,7 +5,7 @@ annotate service.Logs with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'uuid',
+                Label : 'Message UUID',
                 Value : message_uuid,
             },
             {
@@ -16,43 +16,42 @@ annotate service.Logs with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'region',
+                Label : 'Region',
                 Value : region,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'time',
+                Label : 'Time',
                 Value : time,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'tenant',
+                Label : 'Tenant',
                 Value : tenant,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'org_id',
+                Label : 'Org ID',
                 Value : org_id,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'space_id',
+                Label : 'Space ID',
                 Value : space_id,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'app_or_service_id',
+                Label : 'App/Service ID',
                 Value : app_or_service_id,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'als_service_id',
+                Label : 'Als Service ID',
                 Value : als_service_id,
                 
             },
             {
-            $Type: 'UI.DataFieldWithUrl',
-            Url : user,
+            $Type: 'UI.DataField',
             Value: user,
             IconUrl: 'sap-icon://customer',
             
@@ -60,12 +59,12 @@ annotate service.Logs with @(
             
             {
                 $Type : 'UI.DataField',
-                Label : 'format_version',
+                Label : 'Format Version',
                 Value : format_version,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'message',
+                Label : 'Message',
                 Value : message,
             },
             /*{
@@ -87,27 +86,27 @@ annotate service.Logs with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'message_uuid',
+            Label : 'Message UUID',
             Value : message_uuid,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'subaccountDisplayName',
+            Label : 'Subaccount Display Name',
             Value : subaccountDisplayName,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'subaccountTechnicalName',
+            Label : 'Subaccount Technical Name',
             Value : subaccountTechnicalName,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'subaccountSubdomain',
+            Label : 'Subaccount Subdomain',
             Value : subaccountSubdomain,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'region',
+            Label : 'Region',
             Value : region,
         },
     ]
@@ -136,7 +135,7 @@ annotate service.SubAccounts with @(
         {
             $Type : 'UI.DataField',
             Value : subaccountTechnicalName,
-            Label : 'subaccountTechnicalName',
+            Label : 'Subaccount Technical Name',
         },],
     UI.SelectionPresentationVariant #tableView : {
         $Type : 'UI.SelectionPresentationVariantType',
@@ -159,7 +158,7 @@ annotate service.SubAccounts with @(
         {
             $Type : 'UI.DataField',
             Value : subaccountTechnicalName,
-            Label : 'subaccountTechnicalName',
+            Label : 'Subaccount Technical Name',
         },],
     UI.SelectionPresentationVariant #tableView3 : {
         $Type : 'UI.SelectionPresentationVariantType',
@@ -192,19 +191,19 @@ annotate service.Logs with {
     },
 )};
 annotate service.Logs with {
-    subaccountTechnicalName @Common.Label : 'subaccountTechnicalName'
+    subaccountTechnicalName @Common.Label : 'Subaccount Technical Name'
 };
 annotate service.Logs with {
-    app_or_service_id @Common.Label : 'app_or_service_id'
+    app_or_service_id @Common.Label : 'App/Service ID'
 };
 annotate service.Logs with {
-    als_service_id @Common.Label : 'als_service_id'
+    als_service_id @Common.Label : 'Als Service ID'
 };
 annotate service.Logs with {
-    user @Common.Label : 'user'
+    user @Common.Label : 'User'
 };
 annotate service.Logs with {
-    message_uuid @Common.Label : 'message_uuid'
+    message_uuid @Common.Label : 'Message UUID'
 };
 annotate service.Logs with {
     category @(Common.ValueList : {

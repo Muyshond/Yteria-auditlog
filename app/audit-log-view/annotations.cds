@@ -24,45 +24,45 @@ annotate service.SubAccounts with @(
             {
                 $Type : 'UI.DataField',
                 Value : subaccountTechnicalName,
-                Label : 'subaccountTechnicalName',
+                Label : 'Subaccount Technical Name',
             },{
                 $Type : 'UI.DataField',
                 Value : subaccountDisplayName,
-                Label : 'subaccountDisplayName',
+                Label : 'Subaccount Display Name',
             },{
                 $Type : 'UI.DataField',
                 Value : subaccountSubdomain,
-                Label : 'subaccountSubdomain',
+                Label : 'Subaccount Subdomain',
             },
             {
                 $Type : 'UI.DataField',
                 Value : instance_name,
-                Label : 'instance_name',
+                Label : 'Instance Name',
             },
             {
                 $Type : 'UI.DataField',
                 Value : org_name,
-                Label : 'org_name',
+                Label : 'Org Name',
             },
             {
                 $Type : 'UI.DataField',
                 Value : region,
-                Label : 'region',
+                Label : 'Region',
             },
             {
                 $Type : 'UI.DataField',
                 Value : space_name,
-                Label : 'space_name',
+                Label : 'Space Name',
             },
             {
                 $Type : 'UI.DataField',
                 Value : status,
-                Label : 'status',
+                Label : 'Status',
             },
             {
                 $Type : 'UI.DataField',
                 Value : type,
-                Label : 'type',
+                Label : 'Type',
             },],
     }
 );
@@ -71,17 +71,17 @@ annotate service.SubAccounts with @(
         {
             $Type : 'UI.DataField',
             Value : subaccountDisplayName,
-            Label : 'subaccountDisplayName',
+            Label : 'Subaccount Display Name',
         },
         {
             $Type : 'UI.DataField',
             Value : subaccountSubdomain,
-            Label : 'subaccountSubdomain',
+            Label : 'Subaccount Subdomain',
         },
         {
             $Type : 'UI.DataField',
             Value : subaccountTechnicalName,
-            Label : 'subaccountTechnicalName',
+            Label : 'Subaccount Technical Name',
         },
     ]
 );
@@ -101,33 +101,33 @@ annotate service.Logs with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'message_uuid',
+            Label : 'Message UUID',
             Value : message_uuid,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'subaccountDisplayName',
+            Label : 'Subaccount Display Name',
             Value : subaccountDisplayName,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'subaccountTechnicalName',
+            Label : 'Subaccount Technical Name',
             Value : subaccountTechnicalName,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'subaccountSubdomain',
+            Label : 'Subaccount Subdomain',
             Value : subaccountSubdomain,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'region',
+            Label : 'Region',
             Value : region,
         },
         {
             $Type : 'UI.DataField',
             Value : time,
-            
+            Label: 'Time'
             
         },
     ],
@@ -169,7 +169,7 @@ annotate service.SubAccounts with @(
     }
 );
 annotate service.Logs with {
-    time @Common.Label : 'time'
+    time @Common.Label : 'Time'
     @Consumption.filter.selectionType: #INTERVAL
     
 };
@@ -202,7 +202,7 @@ annotate service.Logs with @(
             SelectOptions : [
             ],
         },
-        Text : 'Table View 1',
+        Text : 'Auditlogs',
     }
 );
 annotate service.SubAccounts with @(
@@ -231,33 +231,34 @@ annotate service.Logs with @(
             {
                 $Type : 'UI.DataField',
                 Value : subaccountDisplayName,
-                Label : 'subaccountDisplayName',
+                Label : 'Subaccount Display Name',
             },
             {
                 $Type : 'UI.DataField',
                 Value : subaccountTechnicalName,
+                Label: 'Subaccount Technical Name'
             },
             {
                 $Type : 'UI.DataField',
                 Value : subaccountSubdomain,
-                Label : 'subaccountSubdomain',
+                Label : 'Subaccount Subdomain',
             },
             {
                 $Type : 'UI.DataField',
                 Value : instance_name,
-                Label : 'instance_name',
+                Label : 'Instance Name',
             },{
                 $Type : 'UI.DataField',
                 Value : instance_id,
-                Label : 'instance_id',
+                Label : 'Instance ID',
             },{
                 $Type : 'UI.DataField',
                 Value : landscape_label,
-                Label : 'landscape_label',
+                Label : 'Landscape Label',
             },{
                 $Type : 'UI.DataField',
                 Value : org_name,
-                Label : 'org_name',
+                Label : 'Org Name',
             },
             ],
     }
@@ -279,20 +280,20 @@ annotate service.Logs with @(
     }
 );
 annotate service.Logs with {
-    subaccountDisplayName @Common.Label : 'subaccountDisplayName'
+    subaccountDisplayName @Common.Label : 'Subaccount Display Name'
 };
 annotate service.Logs with {
-    category @Common.Label : 'category'
+    category @Common.Label : 'Category'
 };
 annotate service.Logs with {
-    timeFrom @Common.Label : 'time from'
+    timeFrom @Common.Label : 'Time From'
 };
 
 
 annotate service.Logs with {
-    timeTo @Common.Label : 'time to'
+    timeTo @Common.Label : 'Time To'
 };
 annotate service.Logs with {
-    timeForChart @Common.Label : 'time'
+    timeForChart @Common.Label : 'Time'
 };
 
