@@ -184,9 +184,11 @@
                       "enabled": true,
                       "text": "{i18n>sendAlert}"
                     }
-                  }
+                  },
+                  "anchorBarVisible": true
                 }
-              }
+              },
+              "variantManagement": "Control"
             }
           }
         }

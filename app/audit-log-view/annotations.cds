@@ -98,6 +98,15 @@ annotate service.Logs with @(
         als_service_id,
         category,
         ],
+    Capabilities : {
+    FilterRestrictions : {
+        $Type              : 'Capabilities.FilterRestrictionsType',
+        RequiredProperties : [
+            timeFrom,
+            timeTo
+        ],
+    }
+},
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
